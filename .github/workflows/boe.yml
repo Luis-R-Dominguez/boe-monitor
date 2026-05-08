@@ -3,12 +3,14 @@ name: BOE Monitor
 on:
   schedule:
     - cron: "0 9 * * *"
-
   workflow_dispatch:
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
+    # Necesitamos permisos de escritura para subir el archivo JSON
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout
@@ -28,3 +30,10 @@ jobs:
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: python boe_monitor.py
 
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add seen_items.json
+          # Solo hacemos commit si hay cambios para evitar que el workflow falle
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update seen items [skip ci]" && git push)
