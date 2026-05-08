@@ -2,7 +2,7 @@ name: BOE Monitor
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "0 9 * * *"
 
   workflow_dispatch:
 
