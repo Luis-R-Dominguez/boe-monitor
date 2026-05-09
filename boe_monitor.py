@@ -54,7 +54,7 @@ def send_telegram(message):
 
 
 def main():
-
+    
     seen = load_seen()
 
     feed = feedparser.parse(RSS_URL)
@@ -97,6 +97,7 @@ def main():
 
     else:
         print("Sin novedades")
+        send_telegram("✅ Monitor ejecutado correctamente")
 
     save_seen(seen)
 
