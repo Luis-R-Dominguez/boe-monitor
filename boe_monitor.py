@@ -97,7 +97,7 @@ def main():
 
     else:
         print("Sin novedades")
-        send_telegram("✅ Monitor ejecutado correctamente")
+        send_telegram("✅ Sin novedades")
 
     save_seen(seen)
 
