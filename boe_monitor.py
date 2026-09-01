@@ -281,7 +281,7 @@ def send_telegram(message):
 # ============================================================
 
 def main():
-
+    
     seen = load_seen()
 
     feed = feedparser.parse(RSS_URL)
@@ -325,6 +325,7 @@ def main():
                 ", ".join(result["tech"][:3])
             )
 
+<<<<<<< HEAD
         if result["process"]:
             reasons.append(
                 "📋 Tipo: " +
@@ -348,6 +349,11 @@ def main():
 
         seen.add(link)
         notifications += 1
+=======
+    else:
+        print("Sin novedades")
+        send_telegram("✅ Sin novedades")
+>>>>>>> bec0a42ae2d857e95ac35f6ab9fc31952bdc4d56
 
     save_seen(seen)
 
